@@ -1,1 +1,9 @@
-$('#books_index').html("<%= j(render partial: 'books/index', locals: {books: @books}) %>");
+<!-- books一覧画面ならば -->
+if($('#books_index_books_index').length){
+  $('#books_index_books_index').html("<%= j(render partial: 'books/index', locals: {books: @books_all}) %>");
+}
+
+<!-- user詳細画面ならば -->
+if($('#user_show_books_index').length){
+  $('#user_show_books_index').html("<%= j(render partial: 'books/index', locals: {books: @books_user}) %>");
+}
