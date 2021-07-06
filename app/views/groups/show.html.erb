@@ -1,0 +1,42 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'users/info', user: @owner %>
+      <h2 class="mt-3">New book</h2>
+      <%= render 'books/form', book: Book.new %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Group Detail</h2>
+      <table class='table '>
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>メンバー</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= attachment_image_tag(@group, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+            <td><%= @group.name %></td>
+            <td><%= @group.introduction %></td>
+            <td id='member_list'>
+              <%= render 'member_list', members: @members %>
+            </td>
+            <td id='member_list_btn'>
+              <%= render 'member_list_btn', group: @group %>
+            </td>
+            <td>
+              <% if current_user.owned?(@group) %>
+                <%= link_to 'Notice an Event', sent_mail_new_groups_path(group_id: @group.id), class: 'btn btn-info' %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

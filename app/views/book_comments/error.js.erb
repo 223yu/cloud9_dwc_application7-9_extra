@@ -1,0 +1,6 @@
+<!-- error文が残っていれば削除 -->
+if($('#error_explanation').length){
+  $('#error_explanation').remove();
+}
+
+$('main> .container').prepend("<%= j(render 'layouts/errors', obj: @comment) %>");

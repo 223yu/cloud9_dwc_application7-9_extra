@@ -1,0 +1,8 @@
+<!-- error文が残っていれば削除 -->
+if($('#error_explanation').length){
+  $('#error_explanation').remove();
+}
+
+$('#book_comments_index').html("<%= j(render partial: 'book_comments/comments_index', locals: {book: @book}) %>");
+$("#book_comments_count").html("コメント数: <%= @book.book_comments.count %>");
+$('#book_comment_comment').val('')
