@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books
+    @books = @user.books.sort { |a,b| b.a_week_favorited_count <=> a.a_week_favorited_count }
     @book = Book.new
   end
 
