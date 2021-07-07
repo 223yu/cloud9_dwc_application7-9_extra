@@ -13,7 +13,10 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships,  source: :follower
   has_many :group_users
   has_many :groups, through: :group_users
-
+  has_many :active_user_chats, class_name: 'UserChat', foreign_key: 'send_user_id', dependent: :destroy
+  has_many :send_users, through: :active_user_chats, source: :send_user
+  has_many :passive_user_chats, class_name: 'UserChat', foreign_key: 'receive_user_id', dependent: :destroy
+  has_many :receive_users, through: :passive_user_chats, source: :receive_user
 
   attachment :profile_image, destroy: false
 
@@ -73,6 +76,12 @@ class User < ApplicationRecord
   #ユーザがグループに所属していたらtrueを返す
   def joined?(group)
     groups.include?(group)
+  end
+
+  #ユーザと他のユーザとのチャット履歴を返す
+  def chat_index(other_user)
+    chat_index = UserChat.where(send_user_id: self.id, receive_user_id: other_user.id).or(UserChat.where(send_user_id: other_user.id, receive_user_id: self.id))
+    chat_index.sort { |a,b| a.id <=> b.id}
   end
 
 end

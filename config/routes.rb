@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :user_chats, only: [:index, :create]
   end
   resources :books,only: [:show, :index, :edit, :create, :update]do
     resource :favorites, only: [:create, :destroy]

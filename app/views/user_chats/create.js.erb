@@ -1,0 +1,2 @@
+$('#chat_list').html("<%= j(render partial: 'user_chats/index', locals: {chat_lists: @chat_lists, user: @user}) %>");
+$('#user_chat_content').val('')

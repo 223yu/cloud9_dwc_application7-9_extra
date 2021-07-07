@@ -1,0 +1,16 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-6'>
+      <h2><%= @user.name %> さんとのチャット</h2>
+      <div id='chat_list'>
+        <%= render 'index', chat_lists: @chat_lists, user: @user %>
+      </div>
+
+      <%= form_with model: @user_chat, url: user_user_chats_path(user_id:@user.id), remote: true do |f| %>
+        <div class='form-group'>
+          <%= f.text_field :content, class:'form-control' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

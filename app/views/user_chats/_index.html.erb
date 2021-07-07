@@ -1,0 +1,15 @@
+<table class='table'>
+  <% chat_lists.each do |chat| %>
+    <% if chat.send_user_id == current_user.id %>
+      <tr>
+        <td><%= current_user.name %></td>
+        <td><%= chat.content %></td>
+      </tr>
+    <% else %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= chat.content %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
