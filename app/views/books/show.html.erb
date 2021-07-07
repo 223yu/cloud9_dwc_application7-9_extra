@@ -24,10 +24,11 @@
             </div>
           </td>
           <td id='book_comments_count'>コメント数：<%= @book.book_comments.count %></td>
-            <% if current_user == @book.user %>
-              <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-              <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
-            <% end %>
+          <td>閲覧数：<%= @book.pvcount %></td>
+          <% if current_user == @book.user %>
+            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
+            <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+          <% end %>
         </tr>
       </table>
       <!-- コメント入力欄 -->

@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   def show
     @newbook = Book.new
     @book = Book.find(params[:id])
+    @book.pvcount_up
     @comment = BookComment.new
   end
 
@@ -14,6 +15,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    @book.pvcount = 0
     if @book.save
       redirect_to book_path(@book), notice: "You have created book successfully."
     else

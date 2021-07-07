@@ -14,7 +14,7 @@ class Book < ApplicationRecord
 		favorites.where(user_id: user.id).exists?
 	end
 
-	#１週間以内にいいねされた数を返す
+	#1週間以内にいいねされた数を返す
 	def a_week_favorited_count
 		self.favorites.where(:updated_at => 1.week.ago..Time.now).length
 	end
@@ -30,6 +30,13 @@ class Book < ApplicationRecord
     else
       @contents = Book.where("title LIKE?","%#{word}%")
     end
+  end
+
+  #閲覧数を一つ増やす
+  def pvcount_up
+  	pvcount = self.pvcount
+  	pvcount += 1
+  	self.update_attribute(:pvcount, pvcount)
   end
 
 end
