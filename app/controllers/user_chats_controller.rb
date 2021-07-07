@@ -25,6 +25,7 @@ class UserChatsController < ApplicationController
     def ensure_follow_user
       user = User.find(params[:user_id])
       redirect_to users_path unless current_user.following?(user)
+      redirect_to users_path unless user.following?(current_user)
     end
 
 end
