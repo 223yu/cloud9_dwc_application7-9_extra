@@ -84,4 +84,10 @@ class User < ApplicationRecord
     chat_index.sort { |a,b| a.id <=> b.id}
   end
 
+  #ユーザのn日前からm日前の期間の投稿数を返す
+  def post_count(n,m)
+    range = Date.current.ago(n.days).beginning_of_day..Date.current.ago(m.days).end_of_day
+  	Book.where(user_id: self.id, created_at: range).length
+  end
+
 end

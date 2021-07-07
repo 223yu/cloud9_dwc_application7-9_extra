@@ -11,6 +11,40 @@
       <div id='user_show_books_index'>
         <%= render 'books/index',books: @books %>
       </div>
+      <h2>投稿数の前日比・前週比</h2>
+      <table class='table table-bordered'>
+        <thead>
+          <tr>
+            <td>今日の投稿数</td>
+            <td>前日の投稿数</td>
+            <td>前日比</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @post_count[0] %></td>
+            <td><%= @post_count[1] %></td>
+            <td><%= @day_before_ratio %>%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class='table table-bordered'>
+        <thead>
+          <tr>
+            <td>今週の投稿数</td>
+            <td>前週の投稿数</td>
+            <td>前週比</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @post_count_this_week %></td>
+            <td><%= @post_count_last_week %></td>
+            <td><%= @week_before_ratio %>%</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

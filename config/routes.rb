@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
     resources :user_chats, only: [:index, :create]
   end
-  resources :books,only: [:show, :index, :edit, :create, :update]do
+  resources :books,only: [:show, :index, :edit, :create, :update, :destroy]do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
   end
