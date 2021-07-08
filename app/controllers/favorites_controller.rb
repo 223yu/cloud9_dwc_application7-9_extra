@@ -8,6 +8,8 @@ class FavoritesController < ApplicationController
     # ユーザ詳細画面用
     user = Book.find(params[:book_id]).user
     @books_user = user.books.sort { |a,b| b.a_week_favorited_count <=> a.a_week_favorited_count }
+    # 課題8dのためにいいね順で並び替えをストップ
+    redirect_to request.referrer || root_url
   end
 
   def destroy
@@ -18,6 +20,8 @@ class FavoritesController < ApplicationController
     # ユーザ詳細画面用
     user = Book.find(params[:book_id]).user
     @books_user = user.books.sort { |a,b| b.a_week_favorited_count <=> a.a_week_favorited_count }
+    # 課題8dのためにいいね順で並び替えをストップ
+    redirect_to request.referrer || root_url
   end
 
 end

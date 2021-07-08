@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all.sort { |a,b| b.a_week_favorited_count <=> a.a_week_favorited_count }
+    @books = Book.all #.sort { |a,b| b.a_week_favorited_count <=> a.a_week_favorited_count } 課題8dのためにいいね順をストップ
     @book = Book.new
   end
 
@@ -48,6 +48,14 @@ class BooksController < ApplicationController
     user = User.find(params[:user_id])
     date = params[:date].to_date
     @post_count = user.post_count_date(date)
+  end
+
+  def sort_new_arrival
+    @books = Book.all.sort { |a,b| a.id <=> b.id }
+  end
+
+  def sort_evaluation
+    @books = Book.all.sort { |a,b| b.rate.to_i <=> a.rate.to_i }
   end
 
   private
