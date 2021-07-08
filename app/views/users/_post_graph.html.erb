@@ -1,0 +1,45 @@
+<canvas id='post_line_chart'></canvas>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js'></script>
+
+<script>
+// $(document).on('turbolinks:load',function(){
+  const ctx = document.getElementById('post_line_chart')
+  const post_line_chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日' ],
+      datasets: [
+        {
+          label: '投稿した本の数',
+          data: [
+            <%= post_count[6]%>,
+            <%= post_count[5]%>,
+            <%= post_count[4]%>,
+            <%= post_count[3]%>,
+            <%= post_count[2]%>,
+            <%= post_count[1]%>,
+            <%= post_count[0]%>,
+            ],
+          borderColor: 'rgba(0,0,255,1)',
+          backgroundColor: 'rgba(0,0,0,0)'
+        }
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: '7日間の投稿数の比較'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMax: 10,
+            suggestedMin: 0,
+            stepSize: 1
+          }
+        }]
+      },
+    }
+  });
+// });
+</script>
