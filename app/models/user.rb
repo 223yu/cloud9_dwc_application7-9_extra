@@ -90,4 +90,10 @@ class User < ApplicationRecord
   	Book.where(user_id: self.id, created_at: range).length
   end
 
+  #ユーザの指定したn日の投稿数を返す
+  def post_count_date(date)
+    range = date.beginning_of_day..date.end_of_day
+    Book.where(user_id: self.id, created_at: range).length
+  end
+
 end

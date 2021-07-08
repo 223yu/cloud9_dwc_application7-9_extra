@@ -7,10 +7,13 @@ class UsersController < ApplicationController
     @book = Book.new
 
     # 投稿数用
-    @post_count = []
-    (0..6).each do |n|
-      @post_count.push(@user.post_count(n,n))
-    end
+    @post_count = 0
+
+    # @post_count = []
+    # (0..6).each do |n|
+    #   @post_count.push(@user.post_count(n,n))
+    # end
+
     # if @post_count[1] == 0
     #   @day_before_ratio = '-'
     # else

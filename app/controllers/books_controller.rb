@@ -44,6 +44,12 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def post_count
+    user = User.find(params[:user_id])
+    date = params[:date].to_date
+    @post_count = user.post_count_date(date)
+  end
+
   private
 
     def book_params

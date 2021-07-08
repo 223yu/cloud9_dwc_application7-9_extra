@@ -12,9 +12,27 @@
         <%= render 'books/index',books: @books %>
       </div>
       <!-- 投稿テーブル -->
-      <%= render 'post', post_count: @post_count %>
+      <!--< %= render 'post', post_count: @post_count %>-->
       <!-- 投稿グラフ -->
-      <%= render 'post_graph', post_count: @post_count %>
+      <!--< %= render 'post_graph', post_count: @post_count %>-->
+      <%= form_with url: post_count_books_path, method: :get, remote: true do |f| %>
+        <%= f.hidden_field :user_id, :value => @user.id %>
+        <%= f.date_field :date %>
+        <%= f.submit '検索', class:'btn btn-primary' %>
+      <% end %>
+      <h4>検索結果</h4>
+      <table class='table table-bordered'>
+        <thead>
+          <tr>
+            <td>投稿数</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id='post_count'><%= @post_count %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

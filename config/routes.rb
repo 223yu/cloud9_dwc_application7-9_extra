@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :books,only: [:show, :index, :edit, :create, :update, :destroy]do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
+    get :post_count, on: :collection
   end
   resources :relationships, only: [:create, :destroy]
   resources :groups, only: [:show, :index, :new, :create, :edit, :update] do
