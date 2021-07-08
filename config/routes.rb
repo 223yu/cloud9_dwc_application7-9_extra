@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get :post_count, on: :collection
     get :sort_new_arrival, on: :collection
     get :sort_evaluation, on: :collection
+    get :category_search, on: :collection
   end
   resources :relationships, only: [:create, :destroy]
   resources :groups, only: [:show, :index, :new, :create, :edit, :update] do

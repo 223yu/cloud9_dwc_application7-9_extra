@@ -1,0 +1,27 @@
+<div class='container px-5 px-sm-0'>
+  <%= render 'layouts/errors', obj: @book %>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'users/info', user: current_user %>
+      <h2 class="mt-3">New book</h2>
+      <%= render 'form', book: @book %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Books</h2>
+      <!-- カテゴリー検索か通常の一覧表示かどうかで分ける-->
+      <% if @category %>
+        <%= link_to '新しい順', sort_new_arrival_books_path(category: @category), remote: true %>
+        <span> | </span>
+        <%= link_to '評価の高い順', sort_evaluation_books_path(category: @category), remote: true %>
+      <% else %>
+        <%= link_to '新しい順', sort_new_arrival_books_path, remote: true %>
+        <span> | </span>
+        <%= link_to '評価の高い順', sort_evaluation_books_path, remote: true %>
+      <% end %>
+      <div id='books_index_books_index'>
+        <%= render 'index', books: @books%>
+      </div>
+    </div>
+  </div>
+</div>

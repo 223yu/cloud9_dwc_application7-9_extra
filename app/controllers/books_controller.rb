@@ -51,17 +51,31 @@ class BooksController < ApplicationController
   end
 
   def sort_new_arrival
-    @books = Book.all.sort { |a,b| a.id <=> b.id }
+    if category = params[:category]
+      @books = Book.where(category: category).sort { |a,b| a.id <=> b.id }
+    else
+      @books = Book.all.sort { |a,b| a.id <=> b.id }
+    end
   end
 
   def sort_evaluation
-    @books = Book.all.sort { |a,b| b.rate.to_i <=> a.rate.to_i }
+    if category = params[:category]
+      @books = Book.where(category: category).sort { |a,b| b.rate.to_i <=> a.rate.to_i }
+    else
+      @books = Book.all.sort { |a,b| b.rate.to_i <=> a.rate.to_i }
+    end
+  end
+
+  def category_search
+    @category = params[:category]
+    @books = Book.where(category: @category)
+    @book = Book.new
   end
 
   private
 
     def book_params
-      params.require(:book).permit(:title, :body, :rate)
+      params.require(:book).permit(:title, :body, :rate, :category)
     end
 
 end
