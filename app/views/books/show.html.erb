@@ -24,7 +24,8 @@
             </div>
           </td>
           <td id='book_comments_count'>コメント数：<%= @book.book_comments.count %></td>
-          <td>閲覧数：<%= @book.pvcount %></td>
+          <td class='book_rate' data-score='<%= @book.rate %>'></td>
+          <!--<td>閲覧数：<%= @book.pvcount %></td>-->
           <% if current_user == @book.user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
@@ -45,3 +46,14 @@
     </div>
   </div>
 </div>
+
+<!-- 5段階評価のJS -->
+<script>
+  $('.book_rate').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

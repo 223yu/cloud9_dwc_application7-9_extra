@@ -23,8 +23,20 @@
           </div>
         </td>
         <td>コメント数：<%= book.book_comments.count %></td>
-        <td>閲覧数：<%= book.pvcount %></td>
+        <td class='book_rate' data-score='<%= book.rate %>'></td>
+        <!--<td>閲覧数：<%= book.pvcount %></td>-->
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<!-- 5段階評価のJS -->
+<script>
+  $('.book_rate').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
